@@ -1,0 +1,20 @@
+language: php
+php:
+  - 7.3
+notifications:
+  email:
+    recipients:
+      - tuunalai@tencent.com
+
+env:
+  global:
+    - XDEBUG_MODE=coverage
+
+before_script:
+  - composer install --no-interaction
+
+script:
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then phpunit -v; fi'
+
+after_success:
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash <(curl -s https://codecov.io/bash); fi'
