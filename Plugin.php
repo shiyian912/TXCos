@@ -142,7 +142,7 @@ class Plugin implements PluginInterface
         if (isset($arr) && count($arr[2]) > 0) {
             foreach ($arr[2] as $value) {
                 preg_match('/\[' . $value . '\]:\s*(http.+)\s?/', $text, $matcher);
-                if (!in_array($matcher, $result)) {
+                if (!in_array(trim($matcher[1]), $result)) {
                     if (strpos($matcher[1], $bucket) !== false || strncmp($matcher[1], 'http', 4) !== 0) {
                         continue;
                     }
